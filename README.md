@@ -2,7 +2,7 @@
 
 
 ## Frontend (Angular)
-* Angular
+* Angular (scss for styling)
 
 Not used so far but possible:
 * Bootstrap
