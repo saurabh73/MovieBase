@@ -1,16 +1,19 @@
 const express = require('express');
+const colors = require('colors');
 
-const booksrv = require('./backend/booksrv');
-const genresrv = require('./backend/genresrv');
-const hotlistsrv = require('./backend/hotlistsrv');
-const moviesrv = require('./backend/moviesrv');
-const statisticssrv = require('./backend/statisticssrv');
-const typesrv = require('./backend/typerv');
+// Backend Modules
+const booksrv = require('./modules/booksrv');
+const genresrv = require('./modules/genresrv');
+const hotlistsrv = require('./modules/hotlistsrv');
+const moviesrv = require('./modules/moviesrv');
+const statisticssrv = require('./modules/statisticssrv');
+const typesrv = require('./modules/typesrv');
 
 const app = express();
 
 //ToDo: Database MSSQL Server
 
+const db = {}
 /*  Replace with MSSQL!!!
 const db = mysql.createConnection({
 	host: 'localhost',
