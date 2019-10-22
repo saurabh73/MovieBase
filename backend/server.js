@@ -1,5 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const colors = require('colors');
+const sql = require('mssql');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Backend Modules
 const booksrv = require('./modules/booksrv');
@@ -12,17 +16,23 @@ const typesrv = require('./modules/typesrv');
 const app = express();
 
 //ToDo: Database MSSQL Server
+const dbConfig = {
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  server: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT),
+  database: 'MovieBase',
+  pool: {
+      max: 20,
+      min: 0,
+      idleTimeoutMillis: 30000
+  }
+}
 
-const db = {}
-/*  Replace with MSSQL!!!
-const db = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'stuffbase'
-});
-*/
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -45,13 +55,17 @@ const sendResponse = function (res, suc, mes, data) {
   if (suc) {
     console.log("NODE - SUCCESS " + mes);
   } else {
-    console.log("NODE - ERROR " + mes);
+    console.error("NODE - ERROR " + mes);
   }
   res.json({ success: suc, message: mes, data: data });
 };
 
-//Server Setup here
-moviesrv.setup(app, db, sendResponse);
+
+new sql.ConnectionPool(dbConfig).connect()
+.then(pool => {
+  moviesrv.setup(app, pool, sendResponse);
+  genresrv.setup(app, pool, sendResponse);
+});
 
 
 app.listen(8081, function () {

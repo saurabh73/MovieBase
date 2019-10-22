@@ -36,4 +36,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 * Database will be a `MS SQL Server` (private use only)
 
 ### Run Development server (Backend)
-Run `node server.js` for the node-backend. Navigate to `http://localhost:8081/`
+Run `node server.js` for the backend folder. Navigate to `http://localhost:8081/`
+Run `npm run dev` for hot reloading backend.
+
+## DataBase Local (Docker Based)
+Run `docker-compose up` from database folder.

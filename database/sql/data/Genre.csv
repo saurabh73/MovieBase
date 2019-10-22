@@ -1,0 +1,19 @@
+Id,Name,IsActive
+1,Animation,1
+2,Action,1
+3,Adventure,1
+4,Biography,1
+5,Comedy,1
+6,Crime,1
+7,Drama,1
+8,Documentary,1
+9,Fantasy,1
+10,Historical,1
+11,Horror,1
+12,Musical,1
+13,Mystery,1
+14,Romance,1
+15,Science Fiction,1
+16,Thriller,1
+17,War,1
+18,Western,1

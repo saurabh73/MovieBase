@@ -1,0 +1,3 @@
+DROP DATABASE MovieBase;
+CREATE DATABASE MovieBase;
+GO
